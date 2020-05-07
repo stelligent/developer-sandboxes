@@ -13,9 +13,6 @@ from aws_cdk.aws_iam import (
     CfnManagedPolicy,
     Group,
     ManagedPolicy,
-    Policy,
-    PolicyDocument,
-    PolicyStatement,
     CfnUser,
 )
 
