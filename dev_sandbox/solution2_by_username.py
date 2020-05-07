@@ -18,7 +18,6 @@ from aws_cdk.aws_iam import (
     PolicyStatement,
     User,
 )
-from samtranslator.model import tags
 
 from dev_sandbox.policies.sandbox import username_based_policy
 
@@ -62,7 +61,8 @@ class Solution2UsernameTaggedStack(core.Stack):
         image_id = blocked_instance.instance.image_id
 
         # Can only add tags to CfnInstance as of 1.31
-        dev_username_tag = core.CfnTag(key="username", value=developer.user_name)
+        dev_username_tag = core.CfnTag(
+            key="username", value=developer.user_name)
         valid_instance = CfnInstance(
             self,
             "Valid Instance",
@@ -71,7 +71,8 @@ class Solution2UsernameTaggedStack(core.Stack):
             tags=[dev_username_tag],
         )
         # Empty group as it's not need to complete our tests.
-        test_security_group = SecurityGroup(self, "EmptySecurityGroup", vpc=vpc)
+        test_security_group = SecurityGroup(
+            self, "EmptySecurityGroup", vpc=vpc)
 
         core.CfnOutput(
             self,

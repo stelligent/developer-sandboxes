@@ -18,7 +18,6 @@ from aws_cdk.aws_iam import (
     PolicyStatement,
     CfnUser,
 )
-from samtranslator.model import tags
 
 from dev_sandbox.policies.sandbox import (
     full_attribute_based_policy,
@@ -87,7 +86,8 @@ class Solution3FlexibleABACStack(core.Stack):
             tags=[access_project, access_team, access_cost_center],
         )
         # Empty group as it's not need to complete our tests.
-        test_security_group = SecurityGroup(self, "EmptySecurityGroup", vpc=vpc)
+        test_security_group = SecurityGroup(
+            self, "EmptySecurityGroup", vpc=vpc)
 
         core.CfnOutput(
             self,

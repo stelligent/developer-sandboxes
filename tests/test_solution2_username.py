@@ -7,7 +7,6 @@ import logging
 import sys
 import json
 
-import botostubs
 import boto3
 import botocore
 

@@ -18,7 +18,6 @@ from aws_cdk.aws_iam import (
     PolicyStatement,
     User,
 )
-from samtranslator.model import tags
 
 from dev_sandbox.policies.sandbox import project_specific_tags
 
@@ -71,7 +70,8 @@ class Solution1ProjectStack(core.Stack):
             tags=[vahalla],
         )
         # Empty group as it's not need to complete our tests.
-        test_security_group = SecurityGroup(self, "EmptySecurityGroup", vpc=vpc)
+        test_security_group = SecurityGroup(
+            self, "EmptySecurityGroup", vpc=vpc)
 
         core.CfnOutput(
             self,
@@ -92,4 +92,5 @@ class Solution1ProjectStack(core.Stack):
             value=test_security_group.security_group_id,
             export_name="test-sg",
         )
-        core.CfnOutput(self, "DefaultAMI", value=image_id, export_name="default-ami")
+        core.CfnOutput(self, "DefaultAMI", value=image_id,
+                       export_name="default-ami")
